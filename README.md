@@ -73,7 +73,9 @@ Acessar a aplicação via browser na URL http://localhost:30080 (NodePort)
 ---
 ## Melhorias implementadas
 
+- Utilização de imagens (bportilho/gg_backend:1.0 e bportilho/gg_frontend:2.0) já disponíveis no DockerHub
 - Pull de imagem quando não presente.
+- Utilização de StatefulSet para o banco de dados Postgres
 - HPA para balanceamento de carga no backend
 - Reinicio de container implementado com `restart: always`.
 - Volume persistente para o Banco de Dados PostgreSQL por meio de PV e PVC.
