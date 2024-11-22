@@ -74,7 +74,7 @@ spec:
               subPath: nginx.conf
               readOnly: true
               name: nginx-conf
-      imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
       volumes:
       - name: nginx-conf
         configMap:
