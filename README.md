@@ -21,24 +21,42 @@ Este é um simples jogo de adivinhação desenvolvido utilizando o framework Fla
 ## Instalação
 
 Clonar o repositório
+
 ```bash
 git clone https://github.com/brunoportilho/guess_game_k8s.git
 ```
 
 Navegar até a pasta
+
 ```bash
 cd guess_game_k8s
 ```
+
 Para subir a aplicação, use o comando abaixo:
+
 ```bash
 ./-deploy.sh
 ```
+
 ou
+
 ```bash
 kubectl apply -f .
 ```
 
-Aguardar os pods estarem 'Running" e acessar a aplicação via browser na URL http://localhost:30080 (NodePort)
+Executar o comando abaixo e aguardar todos estarem com STATUS 'Running'.
+
+```bash
+kubectl get pods
+```
+
+Acessar a aplicação via browser na URL http://localhost:30080 (NodePort)
+
+A porta do frontend-svc (NodePort), informada acima, pode ser encontrada obervando o serviço com comando abaixo
+
+```bash
+kubectl get svc
+```
 
 ---
 ## Como Jogar
@@ -88,4 +106,10 @@ Qualquer alteração realizada no código pode ser aplicada executando os comand
 
 ```bash
 kubectl apply -f .
+```
+
+Para finalizar todo processo executar
+
+```bash
+kubectl delete -f .
 ```
