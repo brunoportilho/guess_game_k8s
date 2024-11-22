@@ -109,7 +109,7 @@ kubectl apply -f .
 ```
 
 ---
-## Para finalizar todo processo executar
+## Para finalizar todo processo executar:
 
 ```bash
 kubectl delete -f .
