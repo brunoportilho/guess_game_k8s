@@ -108,7 +108,8 @@ Qualquer alteração realizada no código pode ser aplicada executando os comand
 kubectl apply -f .
 ```
 
-Para finalizar todo processo executar
+---
+## Para finalizar todo processo executar
 
 ```bash
 kubectl delete -f .
