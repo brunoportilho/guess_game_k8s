@@ -13,9 +13,9 @@ Este é um simples jogo de adivinhação desenvolvido utilizando o framework Fla
   
 ## Requisitos
 
+- Kubernetes
 - Docker
 - Git
-- Kubernetes
 
 ---
 ## Instalação
@@ -31,9 +31,13 @@ cd guess_game_k8s
 ```
 Para subir a aplicação, use o comando abaixo:
 ```bash
+./-deploy.sh
+
+ou
+
 kubectl apply -f .
 ```
-Acessar a aplicação via browser na URL http://localhost:30080
+Acessar a aplicação via browser na URL http://localhost:30080 (NodePort)
 ---
 ## Como Jogar
 
@@ -59,35 +63,25 @@ Acessar a aplicação via browser na URL http://localhost:30080
 ---
 ## Estrutura do Código
 
-### Rotas:
-
-- **`/create`**: Cria um novo jogo. Armazena a senha codificada em base64 e retorna um `game_id`.
-- **`/guess/<game_id>`**: Permite ao usuário adivinhar a senha. Compara a adivinhação com a senha armazenada e retorna o resultado.
-
-### Classes Importantes:
-
-- **`Guess`**: Classe responsável por gerenciar a lógica de comparação entre a senha e a tentativa do jogador.
-- **`WrongAttempt`**: Exceção personalizada que é levantada quando a tentativa está incorreta.
-
 ### Repositório
 
-- **yaml Docker Compose:** Arquivo `docker-compose.yml` localizado na raiz do projeto, utilizado para subir a aplicação.
-- **Backend:** Localizado na raiz do projeto, usado para montar a imagem com serviços do backend `backend.Dockerfile`
-- **Frontend:** Localizado na ./frontend, responsavel por montar a imagem Docker com os serviçõs do frontend `frontend.Dockerfile`
-- **Configuração do NGINX:** Localizado na ./frontend, é copiado para o NGINX no momento de criação e contém as configurações de rotas e balanceamento de carga. `nginx.conf`
+- **Arquivos YAML** Instruções para subir utilizado para subir a aplicação separadas em Deployments (ConfigMaps, PV e PVC), Serviços, Secrets, HorizontalPodAutoscaler.
+- **HorizontalPodAutoscaler:** Configurado para autoscaling do backend considerando as metricas de CPU, minimo 1 e máximo 6 replicas.
+- **Ingress:** Ingress Controler usando NGINX para o frontend e backend.
+- **Configuração do NGINX:** `nginx.conf` ajustando dentro do frontend.yaml no ConfigMap.
 
 ---
 ## Melhorias implementadas
 
-- Facilidade de Atualização: aplicação rodando em container Docker, pode ser atualizada rapidamente.
-- Adicionado NGINX para proxy reverso e balanceamento de carga.
+- Pull de imagem quando não presente.
+- HPA para balanceamento de carga no backend
 - Reinicio de container implementado com `restart: always`.
-- Volume persistente para o Banco de Dados PostgreSQL `pg_data`
+- Volume persistente para o Banco de Dados PostgreSQL por meio de PV e PVC.
 
 ---
 ## Em caso de qualquer alteração de código:
 Qualquer alteração realizada no código pode ser aplicada executando os comandos abaixo: 
 
 ```bash
-docker-compose up -d --pull always
+kubectl apply -f .
 ```

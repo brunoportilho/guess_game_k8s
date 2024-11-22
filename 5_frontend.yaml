@@ -74,6 +74,7 @@ spec:
               subPath: nginx.conf
               readOnly: true
               name: nginx-conf
+      imagePullPolicy: IfNotPresent
       volumes:
       - name: nginx-conf
         configMap:
@@ -96,4 +97,4 @@ spec:
       port: 80
       targetPort: 80
       nodePort: 30080
-  type: NodePort  # ingress controller
+  type: NodePort

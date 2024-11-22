@@ -50,8 +50,6 @@ spec:
             value: "secretpass"
           - name: POSTGRES_DB
             value: "postgres"
-          # - name: PG-DATA
-          #   value: /var/lib/postgresql/data/pg-data
           volumeMounts:
             - mountPath: "/var/lib/postgresql/data"
               name: pg-data
