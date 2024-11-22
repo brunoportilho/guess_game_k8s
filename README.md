@@ -37,7 +37,9 @@ ou
 ```bash
 kubectl apply -f .
 ```
+
 Aguardar os pods estarem 'Running" e acessar a aplicação via browser na URL http://localhost:30080 (NodePort)
+
 ---
 ## Como Jogar
 
