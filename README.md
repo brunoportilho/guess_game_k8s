@@ -32,9 +32,9 @@ cd guess_game_k8s
 Para subir a aplicação, use o comando abaixo:
 ```bash
 ./-deploy.sh
-
+```
 ou
-
+```bash
 kubectl apply -f .
 ```
 Acessar a aplicação via browser na URL http://localhost:30080 (NodePort)
